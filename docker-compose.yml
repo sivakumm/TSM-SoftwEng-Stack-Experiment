@@ -12,12 +12,18 @@ services:
     restart: unless-stopped
 
   influxdb:
-    image: influxdb:1.13.1-alpine
+    image: influxdb:2.9.1-alpine
     container_name: influxdb
-    #    ports:
-    #      - "8086:8086" # only needed to access from host
+    ports:
+      - "8086:8086" # only needed to access from host
     environment:
-      - INFLUXDB_DB=study_project
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=influx_password
+      - DOCKER_INFLUXDB_INIT_ORG=study_org
+      - DOCKER_INFLUXDB_INIT_BUCKET=study_project
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w     # Automatically sets the 7-day retention!
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
     volumes:
       - influxdb-data:/var/lib/influxdb
     restart: unless-stopped
@@ -31,19 +37,6 @@ services:
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     restart: unless-stopped
-
-  influxdb-init:
-    image: influxdb:2.9.1-alpine
-    container_name: influxdb_init
-    depends_on:
-      - influxdb
-    restart: no # Only runs once at startup
-    command: >
-      sh -c "apk add --no-cache curl && 
-      sleep 5 && 
-      curl -s -XPOST 'http://influxdb:8086/query' --data-urlencode 'q=CREATE DATABASE \"study_project\"' &&
-      curl -s -XPOST 'http://influxdb:8086/query' --data-urlencode 'q=ALTER RETENTION POLICY \"autogen\" ON \"study_project\" DURATION 7d SHARD DURATION 1d DEFAULT' &&
-      echo -e '\nRetention policy applied successfully'"
 
   mock-publisher:
     image: eclipse-mosquitto:2.1.2-alpine

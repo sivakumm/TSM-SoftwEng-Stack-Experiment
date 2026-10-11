@@ -1,0 +1,70 @@
+<!-- AI Generated Clinet to watch Web Socket Data -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Live MQTT Data (STOMP over WebSocket)</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7/bundles/stomp.umd.min.js"></script>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 2rem;
+        }
+
+        #status {
+            font-weight: bold;
+        }
+
+        #log {
+            margin-top: 1rem;
+            border: 1px solid #ccc;
+            padding: .5rem;
+            height: 60vh;
+            overflow-y: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        .row {
+            border-bottom: 1px solid #eee;
+            padding: 2px 0;
+        }
+    </style>
+</head>
+<body>
+<h1>Live MQTT Data</h1>
+<div>Status: <span id="status">connecting…</span></div>
+<div id="log"></div>
+
+<script>
+    const WS_URL = "http://localhost:8080/ws-live"; // SockJS endpoint
+    const DESTINATION = "/topic/live-data";
+
+    const statusEl = document.getElementById("status");
+    const logEl = document.getElementById("log");
+
+    function append(text) {
+        const row = document.createElement("div");
+        row.className = "row";
+        row.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+        logEl.prepend(row);
+    }
+
+    const client = new StompJs.Client({
+        webSocketFactory: () => new SockJS(WS_URL),
+        reconnectDelay: 2000,
+        onConnect: () => {
+            statusEl.textContent = "connected";
+            client.subscribe(DESTINATION, (msg) => append(msg.body));
+        },
+        onStompError: (frame) => append("STOMP error: " + frame.headers["message"]),
+        onWebSocketClose: () => {
+            statusEl.textContent = "disconnected (retrying…)";
+        },
+    });
+
+    client.activate();
+</script>
+</body>
+</html>
