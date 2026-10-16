@@ -1,6 +1,6 @@
-package ch.sivakumar.softweng.backend.adapter.rest;
+package ch.sivakumar.softweng.backend.adapter.rest.measurement;
 
-import ch.sivakumar.softweng.backend.adapter.rest.dto.MeasurementResponse;
+import ch.sivakumar.softweng.backend.adapter.rest.measurement.dto.MeasurementResponse;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import ch.sivakumar.softweng.backend.domain.types.Humidity;
 import ch.sivakumar.softweng.backend.domain.types.Temperature;

@@ -1,4 +1,4 @@
-package ch.sivakumar.softweng.backend.adapter.rest.dto;
+package ch.sivakumar.softweng.backend.adapter.rest.measurement.dto;
 
 import java.time.Instant;
 
