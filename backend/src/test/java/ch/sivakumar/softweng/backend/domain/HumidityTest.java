@@ -1,5 +1,6 @@
 package ch.sivakumar.softweng.backend.domain;
 
+import ch.sivakumar.softweng.backend.domain.exception.SystemException;
 import ch.sivakumar.softweng.backend.domain.types.Humidity;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,7 +12,7 @@ class HumidityTest {
     @ParameterizedTest
     @ValueSource(doubles = {-0.01, 100.01})
     void shouldThrowWhenValueIsOutOfValidRange(double humidityValue) {
-        assertThrows(IllegalArgumentException.class, () -> new Humidity(humidityValue));
+        assertThrows(SystemException.class, () -> new Humidity(humidityValue));
     }
 
     @ParameterizedTest

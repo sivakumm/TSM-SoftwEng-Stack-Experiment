@@ -1,5 +1,6 @@
 package ch.sivakumar.softweng.backend.domain;
 
+import ch.sivakumar.softweng.backend.domain.exception.SystemException;
 import ch.sivakumar.softweng.backend.domain.types.Temperature;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,7 +12,7 @@ class TemperatureTest {
     @ParameterizedTest
     @ValueSource(doubles = {-40.01, 100.01})
     void shouldThrowWhenValueIsOutOfValidRange(double temperatureValue) {
-        assertThrows(IllegalArgumentException.class, () -> new Temperature(temperatureValue));
+        assertThrows(SystemException.class, () -> new Temperature(temperatureValue));
     }
 
     @ParameterizedTest
