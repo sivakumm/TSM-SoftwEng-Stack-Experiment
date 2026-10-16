@@ -22,11 +22,25 @@ RUN ./gradlew bootJar -x test --no-daemon
 # 4. Extract the JAR into Spring Boot layers
 RUN java -Djarmode=tools -jar build/libs/*.jar extract --layers --launcher --destination extracted
 
+# 5. Build a minimal custom JRE containing only the modules the application needs
+#    (a flat extraction is used so jdeps can analyse the app jar together with its libraries)
+RUN java -Djarmode=tools -jar build/libs/*.jar extract --destination flat \
+ && jdeps --ignore-missing-deps -q --recursive --multi-release 25 \
+      --print-module-deps --class-path 'flat/lib/*' flat/*.jar > modules.txt \
+ && echo "Detected modules: $(cat modules.txt)" \
+ && jlink --add-modules "$(cat modules.txt),jdk.crypto.cryptoki,jdk.management,jdk.unsupported,jdk.zipfs" \
+      --strip-debug --no-man-pages --no-header-files --compress=zip-6 \
+      --output /jre
+
 
 # ==========================================
-# Stage 2: Minimal Java 25 JRE Runtime
+# Stage 2: Minimal runtime with custom JRE
 # ==========================================
-FROM eclipse-temurin:25-jre-alpine AS runtime
+FROM alpine:3.22 AS runtime
+
+ENV JAVA_HOME=/opt/jre
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+COPY --from=builder /jre ${JAVA_HOME}
 
 WORKDIR /app
 
