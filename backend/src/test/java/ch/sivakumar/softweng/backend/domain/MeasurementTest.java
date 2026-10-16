@@ -1,6 +1,6 @@
 package ch.sivakumar.softweng.backend.domain;
 
-import ch.sivakumar.softweng.backend.domain.exceptions.SystemException;
+import ch.sivakumar.softweng.backend.domain.exception.SystemException;
 import ch.sivakumar.softweng.backend.domain.types.Humidity;
 import ch.sivakumar.softweng.backend.domain.types.Temperature;
 import org.junit.jupiter.api.Test;

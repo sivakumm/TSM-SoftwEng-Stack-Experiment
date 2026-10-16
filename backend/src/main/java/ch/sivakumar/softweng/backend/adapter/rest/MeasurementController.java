@@ -3,7 +3,7 @@ package ch.sivakumar.softweng.backend.adapter.rest;
 import ch.sivakumar.softweng.backend.adapter.rest.dto.MeasurementResponse;
 import ch.sivakumar.softweng.backend.application.FetchHistoricalMeasurement;
 import ch.sivakumar.softweng.backend.domain.Measurement;
-import ch.sivakumar.softweng.backend.domain.exceptions.ApplicationException;
+import ch.sivakumar.softweng.backend.domain.exception.ApplicationException;
 import ch.sivakumar.softweng.backend.domain.types.OpenTimeRange;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

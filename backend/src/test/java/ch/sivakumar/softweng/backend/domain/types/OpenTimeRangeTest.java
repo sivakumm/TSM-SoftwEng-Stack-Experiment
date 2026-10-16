@@ -1,6 +1,6 @@
 package ch.sivakumar.softweng.backend.domain.types;
 
-import ch.sivakumar.softweng.backend.domain.exceptions.ApplicationException;
+import ch.sivakumar.softweng.backend.domain.exception.ApplicationException;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;

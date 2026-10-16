@@ -1,4 +1,4 @@
-package ch.sivakumar.softweng.backend.domain.exceptions;
+package ch.sivakumar.softweng.backend.domain.exception;
 
 public class SystemException extends RuntimeException {
 
