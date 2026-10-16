@@ -33,6 +33,7 @@ dependencies {
 
     annotationProcessor 'org.projectlombok:lombok'
 
+    testImplementation 'com.tngtech.archunit:archunit:1.5.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-micrometer-metrics-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-websocket-test'
