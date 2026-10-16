@@ -1,4 +1,4 @@
-package ch.sivakumar.softweng.backend;
+package ch.sivakumar.softweng.backend.adapter.configurations;
 
 import lombok.RequiredArgsConstructor;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;

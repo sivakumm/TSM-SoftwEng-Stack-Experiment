@@ -1,4 +1,4 @@
-package ch.sivakumar.softweng.backend;
+package ch.sivakumar.softweng.backend.adapter.configurations;
 
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.InfluxDBClientFactory;

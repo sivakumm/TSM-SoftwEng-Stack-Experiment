@@ -46,8 +46,9 @@ services:
     command: >
       sh -c "while true; do 
         TEMP=$$((RANDOM % 100)); 
-        mosquitto_pub -h mosquitto -t 'sensor/data' -m \"{\\\"temperature\\\": $$TEMP}\" -u \"iot_user\" -P \"iot_password\";
-        echo \"Published: $$TEMP\"; 
+        HUMI=$$((RANDOM % 100)); 
+        mosquitto_pub -h mosquitto -t 'sensor/data' -m \"{\\\"temperature\\\": $$TEMP, \\\"humidity\\\": $$HUMI}\" -u \"iot_user\" -P \"iot_password\";
+        echo \"Published: $$TEMP, $$HUMI\"; 
         sleep 1; 
       done"
 
