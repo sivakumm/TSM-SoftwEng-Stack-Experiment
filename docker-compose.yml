@@ -52,5 +52,21 @@ services:
         sleep 1; 
       done"
 
+  backend:
+    build: ./backend
+    container_name: spring_backend
+    depends_on:
+      - mosquitto
+      - influxdb
+    ports:
+      - "8080:8080"
+    environment:
+      - MQTT_BROKER_URL=tcp://mosquitto:1883
+      - MQTT_USERNAME=iot_user
+      - MQTT_PASSWORD=iot_password
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=my-super-secret-auth-token
+    restart: unless-stopped
+
 volumes:
   influxdb-data:
