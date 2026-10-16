@@ -1,5 +1,6 @@
 package ch.sivakumar.softweng.backend.application;
 
+import ch.sivakumar.softweng.backend.application.ports.out.LiveMeasurementPublisher;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import ch.sivakumar.softweng.backend.domain.types.Humidity;
 import ch.sivakumar.softweng.backend.domain.types.Temperature;
@@ -15,8 +16,8 @@ class ReceiveLiveMeasurementUseCaseTest {
     @Test
     void shouldPublishReceivedMeasurement() {
         LiveMeasurementPublisher liveMeasurementPublisherMock = mock();
-        ReceiveLiveMeasurementUseCase useCase = new ReceiveLiveMeasurementUseCase(liveMeasurementPublisherMock);
         Measurement measurement = new Measurement(Instant.now(), new Temperature(17), new Humidity(27));
+        ReceiveLiveMeasurementUseCase useCase = new ReceiveLiveMeasurementUseCase(liveMeasurementPublisherMock);
 
         useCase.execute(measurement);
 

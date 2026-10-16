@@ -1,7 +1,9 @@
 package ch.sivakumar.softweng.backend.adapter.websocket;
 
 import ch.sivakumar.softweng.backend.adapter.configurations.WebSocketConfig;
-import ch.sivakumar.softweng.backend.application.LiveMeasurementPublisher;
+import ch.sivakumar.softweng.backend.adapter.websocket.dto.LiveMeasurementMessage;
+import ch.sivakumar.softweng.backend.adapter.websocket.mapper.LiveMeasurementMapper;
+import ch.sivakumar.softweng.backend.application.ports.out.LiveMeasurementPublisher;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;

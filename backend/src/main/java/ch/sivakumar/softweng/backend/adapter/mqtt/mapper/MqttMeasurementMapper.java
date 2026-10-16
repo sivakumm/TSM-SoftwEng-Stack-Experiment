@@ -1,5 +1,6 @@
-package ch.sivakumar.softweng.backend.adapter.mqtt;
+package ch.sivakumar.softweng.backend.adapter.mqtt.mapper;
 
+import ch.sivakumar.softweng.backend.adapter.mqtt.dto.MqttMeasurementPayload;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import ch.sivakumar.softweng.backend.domain.types.Humidity;
 import ch.sivakumar.softweng.backend.domain.types.Temperature;

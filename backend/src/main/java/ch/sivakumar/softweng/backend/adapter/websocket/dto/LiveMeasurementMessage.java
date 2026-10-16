@@ -1,4 +1,4 @@
-package ch.sivakumar.softweng.backend.adapter.websocket;
+package ch.sivakumar.softweng.backend.adapter.websocket.dto;
 
 import java.time.Instant;
 

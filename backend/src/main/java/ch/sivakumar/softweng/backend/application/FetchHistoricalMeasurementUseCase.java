@@ -1,11 +1,14 @@
 package ch.sivakumar.softweng.backend.application;
 
+import ch.sivakumar.softweng.backend.application.ports.in.FetchHistoricalMeasurement;
+import ch.sivakumar.softweng.backend.application.ports.out.HistoricalMeasurementRepository;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import ch.sivakumar.softweng.backend.domain.types.OpenTimeRange;
 import ch.sivakumar.softweng.backend.domain.types.PastTimeRange;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class FetchHistoricalMeasurementUseCase implements FetchHistoricalMeasurement {
 
+    private final Clock clock;
     private final HistoricalMeasurementRepository historicalMeasurementRepository;
 
     @Override
@@ -23,9 +27,9 @@ public class FetchHistoricalMeasurementUseCase implements FetchHistoricalMeasure
         return historicalMeasurementRepository.findMeasurements(queryTimeRange);
     }
 
-    private static PastTimeRange getQueryTimeRange(OpenTimeRange openTimeRange) {
+    private PastTimeRange getQueryTimeRange(OpenTimeRange openTimeRange) {
         Instant maximumPastTimeRangeStart = twoDaysAgo();
-        Instant maximumPastTimeRangeEnd = Instant.now();
+        Instant maximumPastTimeRangeEnd = clock.instant();
 
         if (openTimeRange == null) {
             return new PastTimeRange(maximumPastTimeRangeStart, maximumPastTimeRangeEnd);
@@ -36,8 +40,8 @@ public class FetchHistoricalMeasurementUseCase implements FetchHistoricalMeasure
         return new PastTimeRange(timeRangeStart, timeRangeEnd);
     }
 
-    private static Instant twoDaysAgo() {
-        return Instant.now().minus(2L, ChronoUnit.DAYS);
+    private Instant twoDaysAgo() {
+        return clock.instant().minus(2L, ChronoUnit.DAYS);
     }
 
     private static Instant getValidTimeRangeStart(OpenTimeRange openTimeRange, Instant maximumPastTimeRangeStart) {

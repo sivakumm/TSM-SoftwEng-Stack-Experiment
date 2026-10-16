@@ -12,6 +12,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     public static final String MEASUREMENTS_TOPIC = "/measurements";
 
+    private static final String WEB_SOCKET_ENDPOINT = "/ws";
+
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker(MEASUREMENTS_TOPIC);
@@ -19,7 +21,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws")
+        registry.addEndpoint(WEB_SOCKET_ENDPOINT)
                 .setAllowedOriginPatterns("*")
                 .withSockJS();
     }

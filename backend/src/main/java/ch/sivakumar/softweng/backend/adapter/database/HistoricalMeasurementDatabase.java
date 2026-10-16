@@ -1,6 +1,6 @@
 package ch.sivakumar.softweng.backend.adapter.database;
 
-import ch.sivakumar.softweng.backend.application.HistoricalMeasurementRepository;
+import ch.sivakumar.softweng.backend.application.ports.out.HistoricalMeasurementRepository;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import ch.sivakumar.softweng.backend.domain.types.PastTimeRange;
 import com.influxdb.client.InfluxDBClient;

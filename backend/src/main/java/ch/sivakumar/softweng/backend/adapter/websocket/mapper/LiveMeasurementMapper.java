@@ -1,5 +1,6 @@
-package ch.sivakumar.softweng.backend.adapter.websocket;
+package ch.sivakumar.softweng.backend.adapter.websocket.mapper;
 
+import ch.sivakumar.softweng.backend.adapter.websocket.dto.LiveMeasurementMessage;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import ch.sivakumar.softweng.backend.domain.types.Humidity;
 import ch.sivakumar.softweng.backend.domain.types.Temperature;

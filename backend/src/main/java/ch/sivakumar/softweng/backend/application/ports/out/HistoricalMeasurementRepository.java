@@ -1,4 +1,4 @@
-package ch.sivakumar.softweng.backend.application;
+package ch.sivakumar.softweng.backend.application.ports.out;
 
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import ch.sivakumar.softweng.backend.domain.types.PastTimeRange;

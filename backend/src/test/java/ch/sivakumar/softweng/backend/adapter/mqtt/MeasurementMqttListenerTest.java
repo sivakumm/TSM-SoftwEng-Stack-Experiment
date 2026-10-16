@@ -1,6 +1,7 @@
 package ch.sivakumar.softweng.backend.adapter.mqtt;
 
-import ch.sivakumar.softweng.backend.application.ReceiveLiveMeasurement;
+import ch.sivakumar.softweng.backend.adapter.mqtt.mapper.MqttMeasurementMapper;
+import ch.sivakumar.softweng.backend.application.ports.in.ReceiveLiveMeasurement;
 import ch.sivakumar.softweng.backend.domain.Measurement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,9 +17,7 @@ import java.time.ZoneOffset;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class MeasurementMqttListenerTest {
 

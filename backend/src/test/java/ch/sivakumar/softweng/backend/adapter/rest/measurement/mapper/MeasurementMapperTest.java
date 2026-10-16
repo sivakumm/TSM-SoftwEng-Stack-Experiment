@@ -1,4 +1,4 @@
-package ch.sivakumar.softweng.backend.adapter.rest.measurement;
+package ch.sivakumar.softweng.backend.adapter.rest.measurement.mapper;
 
 import ch.sivakumar.softweng.backend.adapter.rest.measurement.dto.MeasurementResponse;
 import ch.sivakumar.softweng.backend.domain.Measurement;
